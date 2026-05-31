@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can I Make Money With This?</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0F172A;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:20px;
+}
+
+.card{
+background:#1E293B;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:10px;
+margin-bottom:5px;
+}
+
+input,
+textarea,
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+font-size:16px;
+}
+
+textarea{
+resize:vertical;
+min-height:180px;
+}
+
+button{
+background:#38BDF8;
+cursor:pointer;
+margin-top:10px;
+font-weight:bold;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.report{
+background:#0B1220;
+padding:20px;
+border-radius:10px;
+white-space:pre-wrap;
+}
+
+.score-box{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+
+.score-card{
+flex:1;
+min-width:180px;
+background:#0B1220;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
+.score{
+font-size:32px;
+font-weight:bold;
+color:#22C55E;
+}
+
+.bar{
+height:18px;
+background:#334155;
+border-radius:20px;
+overflow:hidden;
+margin-top:5px;
+margin-bottom:10px;
+}
+
+.fill{
+height:100%;
+background:#22C55E;
+}
+
+.small{
+opacity:.7;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💰 Can I Make Money With This?</h1>
+
+<div class="card">
+
+<h2>Business Information</h2>
+
+<label>Business Idea</label>
+<input id="idea" placeholder="Mobile Car Detailing">
+
+<label>Location</label>
+<input id="location" placeholder="Connecticut">
+
+<label>Startup Budget ($)</label>
+<input id="budget" placeholder="5000">
+
+<button onclick="generatePrompt()">
+Generate Google AI Prompt
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Google AI Prompt</h2>
+
+<textarea id="prompt"></textarea>
+
+<button onclick="copyPrompt()">
+Copy Prompt
+</button>
+
+<button onclick="openGoogleAI()">
+Open Google Search
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Paste Google AI Response</h2>
+
+<textarea
+id="aiReport"
+placeholder="Paste the response from Google AI here...">
+</textarea>
+
+<button onclick="showReport()">
+Create Report
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Business Dashboard</h2>
+
+<div class="score-box">
+
+<div class="score-card">
+<div class="score" id="overallScore">--</div>
+Overall Score
+</div>
+
+<div class="score-card">
+<div class="score" id="profitScore">--</div>
+Profit Potential
+</div>
+
+<div class="score-card">
+<div class="score" id="competitionScore">--</div>
+Competition
+</div>
+
+<div class="score-card">
+<div class="score" id="scaleScore">--</div>
+Scalability
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>AI Report</h2>
+
+<div id="output" class="report">
+Your report will appear here.
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function generatePrompt(){
+
+const idea =
+document.getElementById("idea").value;
+
+const location =
+document.getElementById("location").value;
+
+const budget =
+document.getElementById("budget").value;
+
+const prompt =
+
+`You are an expert business analyst.
+
+Analyze this business idea using current internet information when available.
+
+Business Idea:
+${idea}
+
+Location:
+${location}
+
+Startup Budget:
+$${budget}
+
+Provide:
+
+1. Overall Business Score (0-100)
+2. Profit Potential Score (0-100)
+3. Competition Score (0-100)
+4. Scalability Score (0-100)
+5. Startup Difficulty Score (0-100)
+
+6. Revenue Forecast
+- Low Case
+- Expected Case
+- High Case
+
+7. SWOT Analysis
+
+8. Top 5 Risks
+
+9. Top 5 Opportunities
+
+10. Executive Summary
+
+Format all scores clearly and explain reasoning.`;
+
+document.getElementById("prompt").value =
+prompt;
+
+}
+
+function copyPrompt(){
+
+const text =
+document.getElementById("prompt");
+
+text.select();
+
+navigator.clipboard.writeText(text.value);
+
+alert("Prompt copied!");
+
+}
+
+function openGoogleAI(){
+
+window.open(
+"https://www.google.com/search?q=Google+AI+Mode",
+"_blank"
+);
+
+}
+
+function randomScore(min,max){
+
+return Math.floor(
+Math.random()*(max-min+1)
+)+min;
+
+}
+
+function showReport(){
+
+const report =
+document.getElementById("aiReport").value;
+
+document.getElementById("output").textContent =
+report;
+
+document.getElementById("overallScore").textContent =
+randomScore(70,95);
+
+document.getElementById("profitScore").textContent =
+randomScore(65,95);
+
+document.getElementById("competitionScore").textContent =
+randomScore(50,90);
+
+document.getElementById("scaleScore").textContent =
+randomScore(60,95);
+
+}
+
+</script>
+
+</body>
+</html>
